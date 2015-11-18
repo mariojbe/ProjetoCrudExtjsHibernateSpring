@@ -1,40 +1,41 @@
-Ext.define('ExtMVC.controller.Contatos', {
+Ext.define('ExtMVC.controller.Produtos', {
     extend: 'Ext.app.Controller',
-    stores: ['Contatos'],
-    models: ['Contato'],
-    views: ['contato.Formulario', 'contato.Grid'],
+    stores: ['Produtos'],
+    //store: 'Produtos',
+    models: ['Produto'],
+    views: ['produto.Formulario', 'produto.Grid'],
     refs: [{
-            ref: 'contatoPanel',
+            ref: 'produtoPanel',
             selector: 'panel'
         }, {
-            ref: 'contatoGrid',
+            ref: 'produtoGrid',
             selector: 'grid'
         }
     ],
     init: function () {
         this.control({
-            'contatogrid dataview': {
-                itemdblclick: this.editarContato
+            'produtogrid dataview': {
+                itemdblclick: this.editarProduto
             },
-            'contatogrid button[action=add]': {
-                click: this.editarContato
+            'produtogrid button[action=add]': {
+                click: this.editarProduto
             },
-            'contatogrid button[action=delete]': {
-                click: this.deleteContato
+            'produtogrid button[action=delete]': {
+                click: this.deleteProduto
             },
-            'contatoform button[action=save]': {
-                click: this.updateContato
+            'produtoform button[action=save]': {
+                click: this.updateProduto
             }
         });
     },
-    editarContato: function (grid, record) {
-        var edit = Ext.create('ExtMVC.view.contato.Formulario').show();
+    editarProduto: function (grid, record) {
+        var edit = Ext.create('ExtMVC.view.produto.Formulario').show();
 
         if (record) {
             edit.down('form').loadRecord(record);
         }
     },
-    updateContato: function (button) {
+    updateProduto: function (button) {
         var win = button.up('window'),
                 form = win.down('form'),
                 record = form.getRecord(),
@@ -45,24 +46,24 @@ Ext.define('ExtMVC.controller.Contatos', {
         if (values.id > 0) {
             record.set(values);
         } else {
-            record = Ext.create('ExtMVC.model.Contato');
+            record = Ext.create('ExtMVC.model.Produto');
             record.set(values);
-            this.getContatosStore().add(record);
+            this.getProdutosStore().add(record);
             novo = true;
         }
 
         win.close();
-        this.getContatosStore().sync();
+        this.getProdutosStore().sync();
         //this.getContatosStore().load();
 
         if (novo) { //faz reload para atualziar
-            this.getContatosStore().load();
+            this.getProdutosStore().load();
         }
     },
-    deleteContato: function (button) {
-        var grid = this.getContatoGrid(),
+    deleteProduto: function (button) {
+        var grid = this.getProdutoGrid(),
                 record = grid.getSelectionModel().getSelection(),
-                store = this.getContatosStore();
+                store = this.getProdutosStore();
 
         if (record.length === 0) {
             //Ext.Msg.alert('Erro', 'Nenhuma linha selecionada');
@@ -85,7 +86,7 @@ Ext.define('ExtMVC.controller.Contatos', {
                     if (btn == 'yes') {
                         store.remove(record);
                         store.sync();
-                        this.getContatosStore().load();
+                        this.getProdutosStore().load();
                     }
                 }
             });

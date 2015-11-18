@@ -1,7 +1,8 @@
-Ext.define('ExtMVC.store.Contatos', {
-    autoLoad: true,
-    autoSync: true,
-    model: 'Product',
+Ext.define('ExtMVC.store.Produtos', {
+    extend: 'Ext.data.Store',
+    autoLoad: false,
+    autoSync: false,
+    model: 'Produto',
     proxy: {
         type: 'rest',
         url: 'products',

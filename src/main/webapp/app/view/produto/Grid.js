@@ -1,25 +1,26 @@
-Ext.define('ExtMVC.view.contato.Grid', {
+Ext.define('ExtMVC.view.produto.Grid', {
     extend: 'Ext.grid.Panel',
-    alias: 'widget.contatogrid',
+    alias: 'widget.produtogrid',
     requires: ['Ext.toolbar.Paging'],
     iconCls: 'icon-grid',
-    title: 'Contatos',
-    store: 'Contatos',
+    title: 'Produtos',
+    store: 'Produtos',
     columns: [{
-            header: "NOME",
+            header: 'ID',
+            width: 40,
+            flex: 1,
+            dataIndex: 'id'
+        },
+        {
+            header: "NAME",
             width: 170,
             flex: 1,
             dataIndex: 'name'
         }, {
-            header: "TELEFONE",
+            header: "PRICE",
             width: 160,
             flex: 1,
-            dataIndex: 'phone'
-        }, {
-            header: "EMAIL",
-            width: 170,
-            flex: 1,
-            dataIndex: 'email'
+            dataIndex: 'price'
         }],
     initComponent: function () {
 
@@ -39,10 +40,10 @@ Ext.define('ExtMVC.view.contato.Grid', {
             {
                 xtype: 'pagingtoolbar',
                 dock: 'top',
-                store: 'Contatos',
+                store: 'Produtos',
                 displayInfo: true,
-                displayMsg: 'Mostrando Contatos {0} - {1} de {2}',
-                emptyMsg: "Nenhum contato encontrado."
+                displayMsg: 'Mostrando Produtos {0} - {1} de {2}',
+                emptyMsg: "Nenhum produto encontrado."
             }];
 
         this.callParent(arguments);

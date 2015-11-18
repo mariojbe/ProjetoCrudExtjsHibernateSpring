@@ -1,16 +1,16 @@
-Ext.define('ExtMVC.view.contato.Formulario', {
+Ext.define('ExtMVC.view.produto.Formulario', {
     extend: 'Ext.window.Window',
-    alias: 'widget.contatoform',
+    alias: 'widget.produtoform',
     requires: ['Ext.form.Panel', 'Ext.form.field.Text'],
-    title: 'Editar/Criar Contato',
+    title: 'Editar/Criar Produto',
     layout: 'fit',
     autoShow: true,
     width: 280,
     iconCls: 'icon-user',
     initComponent: function () {
-        
+
         var required = '<span style="color:red;font-weight:bold" data-qtip="Required">*</span>';
-        
+
         this.items = [
             {
                 xtype: 'form',
@@ -45,15 +45,8 @@ Ext.define('ExtMVC.view.contato.Formulario', {
                     },
                     {
                         xtype: 'textfield',
-                        name: 'phone',
-                        fieldLabel: 'Telefone'
-                    },
-                    {
-                        xtype: 'textfield',
-                        name: 'email',
-                        afterLabelTextTpl: required,
-                        fieldLabel: 'Email',
-                        vtype: 'email'
+                        name: 'price',
+                        fieldLabel: 'Price'
                     }
                 ]
             }
