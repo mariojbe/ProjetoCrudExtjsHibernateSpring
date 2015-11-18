@@ -1,7 +1,6 @@
 Ext.define('ExtMVC.controller.Produtos', {
     extend: 'Ext.app.Controller',
     stores: ['Produtos'],
-    //store: 'Produtos',
     models: ['Produto'],
     views: ['produto.Formulario', 'produto.Grid'],
     refs: [{
