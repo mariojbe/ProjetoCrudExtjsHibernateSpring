@@ -19,9 +19,9 @@ Ext.define('ExtMVC.store.Produtos', {
             type: 'json'
         },
         api: {
-            create: 'products/create/',
+            create: 'pages/products/create/',
             read: '',
-            update: 'products/edit/',
+            update: 'pages/products/edit/',
             destroy: 'products/delete/'
         }
     }

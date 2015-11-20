@@ -14,6 +14,7 @@ Ext.define('ExtMVC.view.produto.Formulario', {
         this.items = [
             {
                 xtype: 'form',
+                monitorValid: true,
                 padding: '5 5 0 5',
                 border: false,
                 style: 'background-color: #fff;',
@@ -56,11 +57,12 @@ Ext.define('ExtMVC.view.produto.Formulario', {
                 xtype: 'toolbar',
                 dock: 'bottom',
                 id: 'buttons',
+                formBind: true,
                 ui: 'footer',
                 items: ['->', {
                         iconCls: 'icon-save',
                         text: 'Salvar',
-                        formBind: true,
+                        //disabled: true,
                         action: 'save'
                     }, {
                         iconCls: 'icon-reset',

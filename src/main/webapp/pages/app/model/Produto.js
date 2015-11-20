@@ -8,10 +8,10 @@ Ext.define('ExtMVC.model.Produto', {
     validations: [{
             type: 'length',
             field: 'name',
-            min: 1
+            min: 3
         }, {
             type: 'length',
             field: 'price',
-            min: 1
+            min: 3
         }]
 });

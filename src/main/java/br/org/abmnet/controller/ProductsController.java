@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * Blog: 
  */
 @Controller
-@RequestMapping(value = "/products")
+@RequestMapping(value = "pages/products")
 public class ProductsController {
 
 	@Autowired

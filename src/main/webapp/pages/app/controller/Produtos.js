@@ -32,6 +32,7 @@ Ext.define('ExtMVC.controller.Produtos', {
 
         if (record) {
             edit.down('form').loadRecord(record);
+            //this.getProdutosStore().load();
         }
     },
     updateProduto: function (button) {
@@ -53,7 +54,6 @@ Ext.define('ExtMVC.controller.Produtos', {
 
         win.close();
         this.getProdutosStore().sync();
-        //this.getContatosStore().load();
 
         if (novo) { //faz reload para atualziar
             this.getProdutosStore().load();
@@ -85,7 +85,7 @@ Ext.define('ExtMVC.controller.Produtos', {
                     if (btn == 'yes') {
                         store.remove(record);
                         store.sync();
-                        this.getProdutosStore().load();
+                        //this.getProdutosStore().load();
                     }
                 }
             });
