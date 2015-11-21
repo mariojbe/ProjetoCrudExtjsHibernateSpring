@@ -32,7 +32,6 @@ Ext.define('ExtMVC.controller.Produtos', {
 
         if (record) {
             edit.down('form').loadRecord(record);
-            //this.getProdutosStore().load();
         }
     },
     updateProduto: function (button) {
@@ -75,17 +74,21 @@ Ext.define('ExtMVC.controller.Produtos', {
             });
         } else {
             Ext.Msg.show({
-                title: 'Confirmação',
+                title: 'ConfirmaÃ§Ã£o',
                 msg: 'Tem certeza que deseja apagar o(s) registro(s) selecionado(s)?',
                 buttons: Ext.Msg.YESNO,
                 icon: Ext.MessageBox.WARNING,
                 scope: this,
                 width: 450,
                 fn: function (btn, ev) {
+                    var grid = this.getProdutoGrid(),
+                    record = grid.getSelectionModel().getSelection(),
+                    store = this.getProdutosStore();
+            
                     if (btn == 'yes') {
                         store.remove(record);
-                        store.sync();
-                        //this.getProdutosStore().load();
+                        this.getProdutosStore().sync();
+                        this.getProdutosStore().load();
                     }
                 }
             });
