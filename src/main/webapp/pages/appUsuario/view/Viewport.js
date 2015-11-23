@@ -6,8 +6,8 @@ Ext.define('ExtMVC.view.Viewport', {
     extend: 'Ext.Viewport',
     layout: 'fit',
     requires: [
-        'ExtMVC.view.produto.Grid',
-        'ExtMVC.view.produto.Formulario',
+        'ExtMVC.view.usuario.Grid',
+        'ExtMVC.view.usuario.Formulario',
     ],
     initComponent: function () {
         var me = this;
@@ -15,7 +15,7 @@ Ext.define('ExtMVC.view.Viewport', {
         Ext.apply(me, {
             items: [
                 {
-                    xtype: 'produtogrid',
+                    xtype: 'usuariogrid'
                 }
             ]
         });

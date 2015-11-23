@@ -7,18 +7,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * Author: Mário Jorge
- * Blog: 
+ * Author: Mário Jorge Blog:
  */
 @Entity
 @Table(name = "products")
 public class Product implements Serializable {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	@Id
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    @Id
     @GeneratedValue
     private Integer id;
     private String name;

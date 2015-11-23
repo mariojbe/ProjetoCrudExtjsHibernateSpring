@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+    <global-method-security pre-post-annotations="enabled"/>
+    
+    <http auto-config="false" entry-point-ref="authenticationEntryPoint" access-denied-page="/pages/403.jsp">          
+        <intercept-url pattern="/login*" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <intercept-url pattern="/js/**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <intercept-url pattern="/index*" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        <intercept-url pattern="/pages/admin.jsp" access="ROLE_ADMIN" />  
+        <logout logout-success-url="/login.jsp"  invalidate-session="true" delete-cookies="JSESSIONID"/>  
+        <intercept-url pattern="/pages/main.jsp" access="ROLE_USER,ROLE_ADMIN" />  
+        <logout logout-success-url="/login.jsp" invalidate-session="true" delete-cookies="JSESSIONID"/>
+        <intercept-url pattern="/pages/crud.jsp" access="ROLE_USER,ROLE_ADMIN" />  
+        <logout logout-success-url="/login.jsp" invalidate-session="true" delete-cookies="JSESSIONID"/>           
+        <custom-filter position="FORM_LOGIN_FILTER" ref="authenticationFilter"/>
+        <!-- Habilita remember me -->
+        <!--<remember-me data-source-ref="dataSource"/>-->
+                
+    </http>
+     
+    <beans:bean id="authenticationFilter" class="br.org.abmnet.security.AutenticarFilter">
+        <beans:property name="authenticationManager" ref="authenticationManager" />
+    </beans:bean>
+        
+    <beans:bean id="authenticationEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+        <beans:property name="loginFormUrl" value="/login.jsp" />
+    </beans:bean>
+
+    <!-- Permiti security/tags em JSP-->
+    <beans:bean id="webexpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />
+    
+    <!-- Define a forma de acesso ao dados de usuário, senha e sua respectiva role-->
+    <authentication-manager alias="authenticationManager">
+        <authentication-provider>
+            <password-encoder hash="md5" />
+            <jdbc-user-service data-source-ref="dataSource"
+                               users-by-username-query="SELECT usuario, senha, 'true' as ativo FROM usuarios WHERE usuario=?"
+                               authorities-by-username-query="SELECT usuario, autoridade FROM autoridades WHERE usuario=?"
+            />
+        </authentication-provider>
+    </authentication-manager>
+    
+    <beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
+        <beans:property name="url" value="jdbc:mysql://localhost:3306/demo" />
+        <beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <beans:property name="username" value="root" />
+        <beans:property name="password" value="16marioe" />
+    </beans:bean>
+
+</beans:beans>
+
+
+
