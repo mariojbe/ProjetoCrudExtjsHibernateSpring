@@ -66,8 +66,8 @@ Ext.define('ExtMVC.controller.Usuarios', {
         if (record.length === 0) {
             //Ext.Msg.alert('Erro', 'Nenhuma linha selecionada');
             Ext.Msg.show({
-                title: 'Erro',
-                msg: 'Nenhuma linha selecionada!',
+                title: 'Atenção',
+                msg: 'Selecione ao menos um registro!',
                 icon: Ext.MessageBox.ERROR,
                 scope: this,
                 width: 100

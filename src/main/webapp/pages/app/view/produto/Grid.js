@@ -3,6 +3,9 @@ Ext.define('ExtMVC.view.produto.Grid', {
     alias: 'widget.produtogrid',
     requires: ['Ext.toolbar.Paging'],
     iconCls: 'icon-grid',
+    border: false,
+    stripeRows: true,
+    loadMask: true,
     title: 'Produtos',
     store: 'Produtos',
     columns: [{
